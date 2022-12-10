@@ -20,6 +20,7 @@ This repository contains AWS projects completed by me during My AWS Learning Jou
    IPV4 CIDR block → 20.20.0.0/16 → Create VPC
    
   <img width="662" alt="image" src="https://user-images.githubusercontent.com/111115490/206632717-9c18150c-ef69-4174-bb8d-561100ffb1a4.png">
+  
 
 2.Subnets → Create subnet → VPC → VPC ID → select the VPC created 
    Name each subnet and provide a CIDR for each.
@@ -29,34 +30,38 @@ This repository contains AWS projects completed by me during My AWS Learning Jou
   To be able to contain each tier in its own subnet, I have created a set of 1 public and 3 private subnets for each Availability Zone.
   
   # Internet Gateway 
-    create and name to allow the VPC’s public subnets traffic to the internet.
+  
+create and name to allow the VPC’s public subnets traffic to the internet.
     
-
  <img width="726" alt="image" src="https://user-images.githubusercontent.com/111115490/206637349-b5a1c52c-fa10-4a8b-aaf6-56fd2414e45e.png">
   
-  # NAT gateway
+# NAT gateway
+Select NAT gateway from the VPC Dashboard → Create NAT gateway
     
-    Select NAT gateway from the VPC Dashboard → Create NAT gateway
-    
-  <img width="447" alt="image" src="https://user-images.githubusercontent.com/111115490/206639094-bf4d41e1-4427-4eae-8fd8-10f7503f088b.png">
+<img width="447" alt="image" src="https://user-images.githubusercontent.com/111115490/206639094-bf4d41e1-4427-4eae-8fd8-10f7503f088b.png">
+
 
 <img width="441" alt="image" src="https://user-images.githubusercontent.com/111115490/206639212-1b86a2fb-8e2f-48e5-ae35-6c9f8a5210e5.png">
 
+
 <img width="218" alt="image" src="https://user-images.githubusercontent.com/111115490/206639277-7e837dac-10f1-4a2b-a519-1e16d41bcc89.png">
 
+
 <img width="586" alt="image" src="https://user-images.githubusercontent.com/111115490/206639390-77610744-459a-4dde-abc7-4a79999e184d.png">
+
 
 # Route Tables
  
  Create two routing tables, one for the public subnets and one for the private subnets. Using the Routes tab →“Edit routes” for the public route table to make sure the route destinations are set to our CIDR block (20.20.0.0/16) and the Internet Gateway (0.0.0.0/0). For the private route table, the destinations should be set to our CIDR block (20.20.0.0/16) with the Target pointing to the NAT gateway we created.
  
- <img width="746" alt="image" src="https://user-images.githubusercontent.com/111115490/206652969-09490772-45f1-410a-9210-5f4036dff2fe.png">
+ 
+<img width="746" alt="image" src="https://user-images.githubusercontent.com/111115490/206652969-09490772-45f1-410a-9210-5f4036dff2fe.png">
  
  # security groups 
    
-   Create new security group → Basic details → Create a Security group name and select the VPC.Inbound rules must be configured to allow any IPV4 traffic through ports 80 (http) → Create security group.
+Create new security group → Basic details → Create a Security group name and select the VPC.Inbound rules must be configured to allow any IPV4 traffic through ports 80 (http) → Create security group.
    
-   ![image](https://user-images.githubusercontent.com/111115490/206658751-309072fa-5c38-4a69-8433-4c051f0b7bb4.png)
+![image](https://user-images.githubusercontent.com/111115490/206658751-309072fa-5c38-4a69-8433-4c051f0b7bb4.png)
 
 
 
@@ -74,13 +79,14 @@ This repository contains AWS projects completed by me during My AWS Learning Jou
  
  
 # Target Group 
-   Basic configuration → target type Instances → Target group (name) → Protocol HTTP Port 80 → Project VPC then Click Next
+
+Basic configuration → target type Instances → Target group (name) → Protocol HTTP Port 80 → Project VPC then Click Next
    
-   <img width="476" alt="image" src="https://user-images.githubusercontent.com/111115490/206687902-69180a6c-f1e4-40b9-870e-40a9d495c5aa.png">
+<img width="476" alt="image" src="https://user-images.githubusercontent.com/111115490/206687902-69180a6c-f1e4-40b9-870e-40a9d495c5aa.png">
    
-   Then Register targets Select application (private) & port 80 → click target group
+Then Register targets Select application (private) & port 80 → click target group
    
-   <img width="743" alt="image" src="https://user-images.githubusercontent.com/111115490/206688361-ce0a9de7-4b08-4479-9f8a-e4e09b672673.png">
+<img width="743" alt="image" src="https://user-images.githubusercontent.com/111115490/206688361-ce0a9de7-4b08-4479-9f8a-e4e09b672673.png">
 
 
 <img width="713" alt="image" src="https://user-images.githubusercontent.com/111115490/206688646-bcb2f390-9765-4d23-a60b-568630e5824b.png">
@@ -88,47 +94,51 @@ This repository contains AWS projects completed by me during My AWS Learning Jou
 
 # Application Load Balancer
 
- Basic Configuration → Load balancer name , Scheme →select “Internet-facing”, IP address type → select IPV4
+Basic Configuration → Load balancer name , Scheme →select “Internet-facing”, IP address type → select IPV4
  
  
-   Network mapping → VPC (custome VPC), Mappings → select each AZ and the public subnets associated with each
+Network mapping → VPC (custome VPC), Mappings → select each AZ and the public subnets associated with each
    
-   Listeners and routing select custome target group 
+Listeners and routing select custome target group 
    
-   <img width="684" alt="image" src="https://user-images.githubusercontent.com/111115490/206690277-8b95d385-df75-475d-bb29-4bc8d3235aac.png">
+<img width="684" alt="image" src="https://user-images.githubusercontent.com/111115490/206690277-8b95d385-df75-475d-bb29-4bc8d3235aac.png">
    
-   create Load balancer
+# create Load balancer
    
-   <img width="735" alt="image" src="https://user-images.githubusercontent.com/111115490/206690571-205c0c88-d995-4bd0-b4e4-b7aec565b3ac.png">
+<img width="735" alt="image" src="https://user-images.githubusercontent.com/111115490/206690571-205c0c88-d995-4bd0-b4e4-b7aec565b3ac.png">
    
-   # creating RDS Database 
+# creating RDS Database 
    
-   click database → Choose a database creation method as Standard create → Engine options
+click database → Choose a database creation method as Standard create → Engine options
      
-     <img width="551" alt="image" src="https://user-images.githubusercontent.com/111115490/206693045-57d45e5f-a130-4d3e-becc-f6485599a414.png">
+<img width="551" alt="image" src="https://user-images.githubusercontent.com/111115490/206693045-57d45e5f-a130-4d3e-becc-f6485599a414.png">
 
      
-  Click Templates Free tier 
-     <img width="508" alt="image" src="https://user-images.githubusercontent.com/111115490/206693120-cd2a9c6d-30d4-479c-9044-471969e14459.png">
-     
-  Settings → Give DB instance identifier as Project 
-     <img width="455" alt="image" src="https://user-images.githubusercontent.com/111115490/206694036-884c85a7-df57-43a1-a9d2-6d60334fce58.png">
-   
-  In Connectivit Compute resource as Default → VPC choose custome Vpc → DB Subnet group choose Existing VPC security groups and click creat database
-   
-    <img width="421" alt="image" src="https://user-images.githubusercontent.com/111115490/206695522-8fd751a2-0987-4865-97e4-23bbdebf0ae2.png">
-    
-    
-# Creating s3 Bucket
+Click Templates Free tier
 
- In General configuration → Bucket name (custome)
+<img width="508" alt="image" src="https://user-images.githubusercontent.com/111115490/206693120-cd2a9c6d-30d4-479c-9044-471969e14459.png">
+     
+Settings → Give DB instance identifier as Project 
+
+<img width="455" alt="image" src="https://user-images.githubusercontent.com/111115490/206694036-884c85a7-df57-43a1-a9d2-6d60334fce58.png">
+   
+In Connectivit Compute resource as Default → VPC choose custome Vpc → DB Subnet group choose Existing VPC security groups and click creat database
+   
+<img width="421" alt="image" src="https://user-images.githubusercontent.com/111115490/206695522-8fd751a2-0987-4865-97e4-23bbdebf0ae2.png">
+    
+    
+# Creating S3 Bucket
+
+> In General configuration → Bucket name (custome)
  
 <img width="464" alt="image" src="https://user-images.githubusercontent.com/111115490/206696799-0d0b6b01-abf3-46e8-b70c-f405c609500a.png">
  
- Object Ownership → ACLs disabled 
- <img width="521" alt="image" src="https://user-images.githubusercontent.com/111115490/206696951-3460b299-f8cc-4c50-8906-8992768c1764.png">
+> Object Ownership → ACLs disabled 
  
-click create bucket
+<img width="521" alt="image" src="https://user-images.githubusercontent.com/111115490/206696951-3460b299-f8cc-4c50-8906-8992768c1764.png">
+ 
+> click create bucket
+
 <img width="710" alt="image" src="https://user-images.githubusercontent.com/111115490/206697335-6c875d59-170c-46a8-b7f1-6d0010157bca.png">
 
 # Creating DynamoDB
@@ -136,20 +146,25 @@ click create bucket
 DynamoDB → tables → Create table → Give table name and Partition key
 
 <img width="461" alt="image" src="https://user-images.githubusercontent.com/111115490/206699152-00678d8d-5e0c-463c-975e-7b720bab6b22.png">
-Click create table
+
+> Click create table
+
 <img width="740" alt="image" src="https://user-images.githubusercontent.com/111115490/206699305-abe5f78a-5ae7-4950-ab81-0a5867cf0929.png">
 
-   # Connecting Ec2 Instance Using Putty
-   sudo apt-get update
-   sudo nano key.pem
-   ssh -i newjenkins.pem ubuntu@private Key( application)
-   <img width="482" alt="image" src="https://user-images.githubusercontent.com/111115490/206691887-f0fc7635-aff4-4772-9e78-92690ed2a47c.png">
-   sudo nano key.pem
-   sudo chmod 400 newjenkins.pem
-   ssh -i key.pem ubuntu@private ip Address
-   sudo apt get install mysql-client
+# Connecting Ec2 Instance Using Putty
    
-   <img width="836" alt="image" src="https://user-images.githubusercontent.com/111115490/206704572-7b570dd4-a794-4b6a-90d2-68ef1fa1667d.png">
+sudo apt-get update
+sudo nano key.pem
+ssh -i newjenkins.pem ubuntu@private Key( application)
+
+<img width="482" alt="image" src="https://user-images.githubusercontent.com/111115490/206691887-f0fc7635-aff4-4772-9e78-92690ed2a47c.png">
+
+sudo nano key.pem
+sudo chmod 400 newjenkins.pem
+ssh -i key.pem ubuntu@private ip Address
+sudo apt get install mysql-client
+   
+<img width="836" alt="image" src="https://user-images.githubusercontent.com/111115490/206704572-7b570dd4-a794-4b6a-90d2-68ef1fa1667d.png">
    
 sudo apt-get update
 
@@ -171,6 +186,7 @@ mysql> CREATE TABLE employee (emp_id VARCHAR(20), first_name VARCHAR(20),last_na
 <img width="470" alt="image" src="https://user-images.githubusercontent.com/111115490/206707870-7cc84bd7-932c-41e1-9d3e-36f0b09e4694.png">
 
 mysql> exit
+
 sudo apt-get install git
 
 <img width="563" alt="image" src="https://user-images.githubusercontent.com/111115490/206708927-2ff8b68c-4a91-4cbd-8623-f8046bb8e029.png">
