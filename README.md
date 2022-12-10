@@ -195,10 +195,14 @@ sudo apt-get install git
  
  <img width="583" alt="image" src="https://user-images.githubusercontent.com/111115490/206709041-892c9879-a674-42be-ac6e-793157007ace.png">
 
-ubuntu@ip-20-20-3-239:~$ ls
-aws-code-main
-cd aws-code-main
-ls
+> ls
+
+> aws-code-main
+
+> cd aws-code-main
+
+> ls
+
 <img width="503" alt="image" src="https://user-images.githubusercontent.com/111115490/206711801-9c268913-9c48-4fa0-978f-18763de1cbf0.png">
 
 sudo nano config.py
