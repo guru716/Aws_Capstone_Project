@@ -1,8 +1,11 @@
 # Project: Deploy a Multi-tier website using EC2 
+
 This repository contains AWS projects completed by me during My AWS Learning Journey.
+
 ![Aws](https://user-images.githubusercontent.com/111115490/206626352-aeab954e-41c5-47f1-9fc1-ba56e9df0b30.jpg)
 
 # Overview of Steps
+
 1.Create a VPC, subnets, internet gateway, and edit route tables.
 
 2.Create an application load balancer for the web tier (Internet-facing) and application tiers.
@@ -29,13 +32,14 @@ This repository contains AWS projects completed by me during My AWS Learning Jou
 <img width="747" alt="image" src="https://user-images.githubusercontent.com/111115490/206635099-7ce35d27-c0d7-4049-8d6a-0a3957a254db.png">
   To be able to contain each tier in its own subnet, I have created a set of 1 public and 3 private subnets for each Availability Zone.
   
-  # Internet Gateway 
+# Internet Gateway 
   
 create and name to allow the VPC’s public subnets traffic to the internet.
     
- <img width="726" alt="image" src="https://user-images.githubusercontent.com/111115490/206637349-b5a1c52c-fa10-4a8b-aaf6-56fd2414e45e.png">
+<img width="726" alt="image" src="https://user-images.githubusercontent.com/111115490/206637349-b5a1c52c-fa10-4a8b-aaf6-56fd2414e45e.png">
   
 # NAT gateway
+
 Select NAT gateway from the VPC Dashboard → Create NAT gateway
     
 <img width="447" alt="image" src="https://user-images.githubusercontent.com/111115490/206639094-bf4d41e1-4427-4eae-8fd8-10f7503f088b.png">
@@ -67,24 +71,24 @@ Create new security group → Basic details → Create a Security group name and
 
 # Configure Launch Templates for the Web Tiers
  
- Web Tier: EC2 → Instances → Name (public Instance) → AMI → Ubuntu 20.04 → Instance type t2.micro.Create new key pair. In Network settings Click Edit
- VPC → Our Own VPC → Subnet → Public subnet1 → Firewall (security groups) select existing security group choose Our Own security group.
+* Web Tier: EC2 → Instances → Name (public Instance) → AMI → Ubuntu 20.04 → Instance type t2.micro.Create new key pair. In Network settings Click Edit
+VPC → Our Own VPC → Subnet → Public subnet1 → Firewall (security groups) select existing security group choose Our Own security group.
  
- <img width="506" alt="image" src="https://user-images.githubusercontent.com/111115490/206662874-6d6cddd6-b137-44d9-847c-142e3b7cc184.png">
+<img width="506" alt="image" src="https://user-images.githubusercontent.com/111115490/206662874-6d6cddd6-b137-44d9-847c-142e3b7cc184.png">
  
  
- click Instances → Name (private Instance) → AMI → Ubuntu 20.04 → Instance type t2.micro.Create new key pair. In Network settings Click Edit
+* click Instances → Name (private Instance) → AMI → Ubuntu 20.04 → Instance type t2.micro.Create new key pair. In Network settings Click Edit
  VPC → Our Own VPC → Subnet → private subnet → Firewall (security groups) select existing security group choose Our Own security group.
  
  
  
 # Target Group 
 
-Basic configuration → target type Instances → Target group (name) → Protocol HTTP Port 80 → Project VPC then Click Next
+* Basic configuration → target type Instances → Target group (name) → Protocol HTTP Port 80 → Project VPC then Click Next
    
 <img width="476" alt="image" src="https://user-images.githubusercontent.com/111115490/206687902-69180a6c-f1e4-40b9-870e-40a9d495c5aa.png">
    
-Then Register targets Select application (private) & port 80 → click target group
+* Then Register targets Select application (private) & port 80 → click target group
    
 <img width="743" alt="image" src="https://user-images.githubusercontent.com/111115490/206688361-ce0a9de7-4b08-4479-9f8a-e4e09b672673.png">
 
@@ -94,10 +98,10 @@ Then Register targets Select application (private) & port 80 → click target gr
 
 # Application Load Balancer
 
-Basic Configuration → Load balancer name , Scheme →select “Internet-facing”, IP address type → select IPV4
+* Basic Configuration → Load balancer name , Scheme →select “Internet-facing”, IP address type → select IPV4
  
  
-Network mapping → VPC (custome VPC), Mappings → select each AZ and the public subnets associated with each
+* Network mapping → VPC (custome VPC), Mappings → select each AZ and the public subnets associated with each
    
 Listeners and routing select custome target group 
    
@@ -109,7 +113,7 @@ Listeners and routing select custome target group
    
 # creating RDS Database 
    
-click database → Choose a database creation method as Standard create → Engine options
+* click database → Choose a database creation method as Standard create → Engine options
      
 <img width="551" alt="image" src="https://user-images.githubusercontent.com/111115490/206693045-57d45e5f-a130-4d3e-becc-f6485599a414.png">
 
@@ -118,7 +122,7 @@ Click Templates Free tier
 
 <img width="508" alt="image" src="https://user-images.githubusercontent.com/111115490/206693120-cd2a9c6d-30d4-479c-9044-471969e14459.png">
      
-Settings → Give DB instance identifier as Project 
+* Settings → Give DB instance identifier as Project 
 
 <img width="455" alt="image" src="https://user-images.githubusercontent.com/111115490/206694036-884c85a7-df57-43a1-a9d2-6d60334fce58.png">
    
@@ -129,15 +133,15 @@ In Connectivit Compute resource as Default → VPC choose custome Vpc → DB Sub
     
 # Creating S3 Bucket
 
-> In General configuration → Bucket name (custome)
+* In General configuration → Bucket name (custome)
  
 <img width="464" alt="image" src="https://user-images.githubusercontent.com/111115490/206696799-0d0b6b01-abf3-46e8-b70c-f405c609500a.png">
  
-> Object Ownership → ACLs disabled 
+* Object Ownership → ACLs disabled 
  
 <img width="521" alt="image" src="https://user-images.githubusercontent.com/111115490/206696951-3460b299-f8cc-4c50-8906-8992768c1764.png">
  
-> click create bucket
+* click create bucket
 
 <img width="710" alt="image" src="https://user-images.githubusercontent.com/111115490/206697335-6c875d59-170c-46a8-b7f1-6d0010157bca.png">
 
@@ -147,21 +151,26 @@ DynamoDB → tables → Create table → Give table name and Partition key
 
 <img width="461" alt="image" src="https://user-images.githubusercontent.com/111115490/206699152-00678d8d-5e0c-463c-975e-7b720bab6b22.png">
 
-> Click create table
+* Click create table
 
 <img width="740" alt="image" src="https://user-images.githubusercontent.com/111115490/206699305-abe5f78a-5ae7-4950-ab81-0a5867cf0929.png">
 
 # Connecting Ec2 Instance Using Putty
    
 sudo apt-get update
+
 sudo nano key.pem
+
 ssh -i newjenkins.pem ubuntu@private Key( application)
 
 <img width="482" alt="image" src="https://user-images.githubusercontent.com/111115490/206691887-f0fc7635-aff4-4772-9e78-92690ed2a47c.png">
 
 sudo nano key.pem
+
 sudo chmod 400 newjenkins.pem
+
 ssh -i key.pem ubuntu@private ip Address
+
 sudo apt get install mysql-client
    
 <img width="836" alt="image" src="https://user-images.githubusercontent.com/111115490/206704572-7b570dd4-a794-4b6a-90d2-68ef1fa1667d.png">
@@ -225,10 +234,26 @@ sudo apt-get install python3-boto3
 
 <img width="929" alt="image" src="https://user-images.githubusercontent.com/111115490/206712685-f8f5d044-f2c2-48cc-9e17-4269e4acea1f.png">
 
-ls
-sudo python3 EmpApp.py
+* If You Do ls in terminal You can See EmpApp.py. Need to Run Python Code EmpApp.py
+
+<img width="449" alt="image" src="https://user-images.githubusercontent.com/111115490/208298993-f514c507-e3f5-4ed3-bd1b-94a76f51fcac.png">
+
+sudo python3 EmpApp.py 
+
+* Now Its Start and Running
 
 <img width="614" alt="image" src="https://user-images.githubusercontent.com/111115490/206712871-0ffc1ed3-978b-41a1-b5a7-06477730939b.png">
+
+
+* Next Go to Load Balancer. In Load balancer Copy the DNS name and Paste it in Web browser
+
+<img width="571" alt="image" src="https://user-images.githubusercontent.com/111115490/208299420-be6e45d1-6703-48f6-bd77-cf8b22fda22b.png">
+
+* Now Web application is Running Successfully 
+
+<img width="571" alt="image" src="https://user-images.githubusercontent.com/111115490/208299600-f6c92f34-75fd-4d36-8332-bcbdbca10597.png">
+
+
 
 
  
