@@ -247,9 +247,12 @@ sudo python3 EmpApp.py
 
 * Next Go to Load Balancer. In Load balancer Copy the DNS name and Paste it in Web browser
 
-<img width="571" alt="image" src="https://user-images.githubusercontent.com/111115490/208299420-be6e45d1-6703-48f6-bd77-cf8b22fda22b.png">
+<img width="869" alt="image" src="https://user-images.githubusercontent.com/111115490/208301125-68088927-3256-46c7-b0fc-5736191f7770.png">
+
+
 
 * Now Web application is Running Successfully 
+
 
 <img width="571" alt="image" src="https://user-images.githubusercontent.com/111115490/208299600-f6c92f34-75fd-4d36-8332-bcbdbca10597.png">
 
